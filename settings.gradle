@@ -1,0 +1,3 @@
+rootProject.name = "Renderscript Intrinsics Replacement Toolkit"
+include ':test-app'
+include ':renderscript-toolkit'
