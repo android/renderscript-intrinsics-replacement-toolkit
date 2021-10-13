@@ -20,7 +20,7 @@ library that you can add to your project.
 These functions execute multithreaded on the CPU. They take advantage of Neon/AdvSimd
 on Arm processors and SSE on Intel's.
 
-Compared to the RenderScript Intrinisics, this Toolkit is simpler to use and twice as fast
+Compared to the RenderScript Intrinsics, this Toolkit is simpler to use and twice as fast
 when executing on the CPU. However RenderScript Intrinsics allow more flexibility for
 the type of allocations supported. This toolkit does not support allocations of floats;
 most the functions support ByteArrays and Bitmaps.
