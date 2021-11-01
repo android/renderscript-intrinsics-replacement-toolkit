@@ -57,6 +57,18 @@ val commonLayoutsToTry = listOf(
     */
 )
 
+enum class Intrinsic {
+    BLEND,
+    BLUR,
+    COLOR_MATRIX,
+    CONVOLVE,
+    HISTOGRAM,
+    LUT,
+    LUT3D,
+    RESIZE,
+    YUV_TO_RGB,
+}
+
 
 class Tester(context: Context, private val validate: Boolean) {
     private val renderscriptContext = RenderScript.create(context)
@@ -83,30 +95,20 @@ class Tester(context: Context, private val validate: Boolean) {
         renderscriptContext.destroy()
     }
 
+    // Test one single intrinsic. Return true on success and false on failure.
     @ExperimentalUnsignedTypes
-    fun testAll(timer: TimingTracker): String {
-        val tests  = listOf(
-            Pair("blend", ::testBlend),
-            Pair("blur", ::testBlur),
-            Pair("colorMatrix", ::testColorMatrix),
-            Pair("convolve", ::testConvolve),
-            Pair("histogram", ::testHistogram),
-            Pair("lut", ::testLut),
-            Pair("lut3d", ::testLut3d),
-            Pair("resize", ::testResize),
-            Pair("yuvToRgb", ::testYuvToRgb),
-        )
-        val results = Array(tests.size) { "" }
-        for (i in tests.indices) {
-            val (name, test) = tests[i]
-            println("Doing $name")
-            val success = test(timer)
-            results[i] = "$name " + if (success) "succeeded" else "FAILED! FAILED! FAILED! FAILED!"
-            println("      ${results[i]}")
-        }
-
-        return results.joinToString("\n")
-    }
+    fun testOne(intrinsic: Intrinsic, timer: TimingTracker) =
+        when(intrinsic) {
+            Intrinsic.BLEND -> ::testBlend
+            Intrinsic.BLUR -> ::testBlur
+            Intrinsic.COLOR_MATRIX -> ::testColorMatrix
+            Intrinsic.CONVOLVE -> ::testConvolve
+            Intrinsic.HISTOGRAM -> ::testHistogram
+            Intrinsic.LUT -> ::testLut
+            Intrinsic.LUT3D -> ::testLut3d
+            Intrinsic.RESIZE -> ::testResize
+            Intrinsic.YUV_TO_RGB -> ::testYuvToRgb
+        }.let { test -> test(timer) }
 
     @ExperimentalUnsignedTypes
     private fun testBlend(timer: TimingTracker): Boolean {
