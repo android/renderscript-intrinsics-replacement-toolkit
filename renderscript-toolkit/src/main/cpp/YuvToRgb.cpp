@@ -57,6 +57,15 @@ class YuvToRgbTask : public Task {
                 mInV = reinterpret_cast<const uchar*>(input + mStrideY * sizeY);
                 mInU = mInV + 1;
                 break;
+            case RenderScriptToolkit::YuvFormat::YUV_420_888:
+                mCstep = 2;
+                mStrideY = sizeX;
+                mStrideU = mStrideY;
+                mStrideV = mStrideY;
+                mInY = reinterpret_cast<const uchar*>(input);
+                mInU = reinterpret_cast<const uchar*>(input + mStrideY * sizeY);
+                mInV = mInU + 1;
+                break;
             case RenderScriptToolkit::YuvFormat::YV12:
                 mCstep = 1;
                 mStrideY = roundUpTo16(sizeX);

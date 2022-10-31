@@ -43,6 +43,7 @@ fun intrinsicYuvToRgb(
     inputBuilder.setY(sizeY)
     when (format) {
         YuvFormat.NV21 -> inputBuilder.setYuvFormat(ImageFormat.NV21)
+        YuvFormat.YUV_420_888 -> inputBuilder.setYuvFormat(ImageFormat.YUV_420_888)
         YuvFormat.YV12 -> inputBuilder.setYuvFormat(ImageFormat.YV12)
         else -> require(false) { "Unknown YUV format $format" }
     }
