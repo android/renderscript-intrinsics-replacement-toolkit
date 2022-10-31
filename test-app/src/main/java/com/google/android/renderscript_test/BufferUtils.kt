@@ -361,6 +361,7 @@ fun randomYuvArray(seed: Long, sizeX: Int, sizeY: Int, format: YuvFormat): ByteA
             totalSize = strideX * sizeY + roundUpTo16(strideX / 2) * halfSizeY * 2
         }
         YuvFormat.NV21 -> totalSize = sizeX * sizeY + halfSizeX * halfSizeY * 2
+        YuvFormat.YUV_420_888 -> totalSize = sizeX * sizeY + halfSizeX * halfSizeY * 2
         else -> require(false) { "Unknown YUV format $format" }
     }
 

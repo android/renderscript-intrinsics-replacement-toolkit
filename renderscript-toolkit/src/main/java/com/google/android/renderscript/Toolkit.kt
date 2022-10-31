@@ -1047,7 +1047,7 @@ object Toolkit {
      * @param inputArray The buffer of the image to be converted.
      * @param sizeX The width in pixels of the image.
      * @param sizeY The height in pixels of the image.
-     * @param format Either YV12 or NV21.
+     * @param format Either YV12 or NV21 or YUV_420_888
      * @return The converted image as a byte array.
      */
     fun yuvToRgb(inputArray: ByteArray, sizeX: Int, sizeY: Int, format: YuvFormat): ByteArray {
@@ -1073,7 +1073,7 @@ object Toolkit {
      * @param inputArray The buffer of the image to be converted.
      * @param sizeX The width in pixels of the image.
      * @param sizeY The height in pixels of the image.
-     * @param format Either YV12 or NV21.
+     * @param format Either YV12 or NV21 or YUV_420_888
      * @return The converted image.
      */
     fun yuvToRgbBitmap(inputArray: ByteArray, sizeX: Int, sizeY: Int, format: YuvFormat): Bitmap {
@@ -1422,6 +1422,7 @@ class LookupTable {
  */
 enum class YuvFormat(val value: Int) {
     NV21(0x11),
+    YUV_420_888(0x23),
     YV12(0x32315659),
 }
 

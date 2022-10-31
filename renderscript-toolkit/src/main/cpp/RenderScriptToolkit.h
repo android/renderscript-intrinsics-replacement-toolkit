@@ -509,6 +509,7 @@ class RenderScriptToolkit {
      */
     enum class YuvFormat {
         NV21 = 0x11,
+        YUV_420_888 = 0x23,
         YV12 = 0x32315659,
     };
 
@@ -527,7 +528,7 @@ class RenderScriptToolkit {
      * @param out The buffer that receives the converted image.
      * @param sizeX The width in pixels of the image. Must be even.
      * @param sizeY The height in pixels of the image.
-     * @param format Either YV12 or NV21.
+     * @param format Either YV12 or NV21 or YUV_420_888
      */
     void yuvToRgb(const uint8_t* _Nonnull in, uint8_t* _Nonnull out, size_t sizeX, size_t sizeY,
                   YuvFormat format);
